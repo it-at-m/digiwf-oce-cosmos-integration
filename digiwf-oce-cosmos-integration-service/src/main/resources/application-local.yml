@@ -2,7 +2,7 @@ io:
   muenchendigital:
     digiwf:
       ocecosmos:
-          url: ''
+          url: '<oce-cosmos-url>'
 
 spring:
   cloud:

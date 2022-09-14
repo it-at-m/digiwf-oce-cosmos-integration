@@ -41,6 +41,7 @@ public class OceCosmosIntegrationAutoConfiguration {
      * @param restTemplateBuilder to create a {@link RestTemplate}.
      * @return a configured {@link ApiClient}.
      */
+    @Bean
     public ApiClient oceCosmosApiClient(final RestTemplateBuilder restTemplateBuilder) {
 
         final RestTemplate restTemplate = restTemplateBuilder
