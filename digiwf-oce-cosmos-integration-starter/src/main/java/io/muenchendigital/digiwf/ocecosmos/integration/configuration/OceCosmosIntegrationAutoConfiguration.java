@@ -1,9 +1,6 @@
 package io.muenchendigital.digiwf.ocecosmos.integration.configuration;
 
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.ApiClient;
-import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.AdressenBundesweitApi;
-import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.AdressenMnchenApi;
-import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.StraenMnchenApi;
 import io.muenchendigital.digiwf.ocecosmos.integration.properties.OceCosmosIntegrationProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
