@@ -45,7 +45,7 @@
             <artifactId>spring-cloud-stream-binder-kafka</artifactId>
         </dependency>
 
-        <!-- Address service starter -->
+        <!-- Oce Cosmos starter -->
         <dependency>
             <groupId>io.muenchendigital.digiwf</groupId>
             <artifactId>digiwf-oce-cosmos-integration-starter</artifactId>
