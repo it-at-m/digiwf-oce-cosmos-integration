@@ -31,9 +31,7 @@
     <modules>
         <module>digiwf-oce-cosmos-integration</module>
         <module>digiwf-oce-cosmos-integration-starter</module>
-        <!--
         <module>digiwf-oce-cosmos-integration-service</module>
-        -->
     </modules>
 
     <dependencyManagement>
