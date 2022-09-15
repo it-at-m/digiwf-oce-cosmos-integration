@@ -13,6 +13,7 @@
   </a>
 
 <h3 align="center">DigiWF Canon Océ Cosmos Integration</h3>
+<h4 align="center" style="color:red">Still in development</h4>
 
 <p align="center">
     This is a Spring Boot Starter library to enable printing with Canon Océ Cosmos within the DigiWF environment.
