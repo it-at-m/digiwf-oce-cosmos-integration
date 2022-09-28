@@ -1,6 +1,9 @@
 package io.muenchendigital.digiwf.ocecosmos.integration.configuration;
 
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.ApiClient;
+import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.FileStatusOperationsApi;
+import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.JobAttributeOperationsApi;
+import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.JobOperationsApi;
 import io.muenchendigital.digiwf.ocecosmos.integration.properties.OceCosmosIntegrationProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -21,9 +24,8 @@ import org.springframework.web.client.RestTemplate;
                         type = FilterType.ASSIGNABLE_TYPE,
                         classes = {
                                 /**
-                                 * Exclude to avoid multiple instantiation of beans with same name.
-                                 * This class is instantiated in {@link OceCosmosIntegrationAutoConfiguration}
-                                 * to give the bean another name.
+                                 * Exclude to make custom configurations.
+                                 * This class is instantiated in {@link OceCosmosIntegrationAutoConfiguration}.
                                  */
                                 ApiClient.class
                         }

@@ -12,7 +12,7 @@ import lombok.Data;
         visible = true
 )
 @JsonSubTypes({
-    // Add Subtypes here
+        @JsonSubTypes.Type(value = JobRequestDto.class, name = "requestPrint"),
 })
 public abstract class AbstractRequestDto {
 
