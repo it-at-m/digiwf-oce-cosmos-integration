@@ -42,7 +42,7 @@ public class JobRequestDto extends AbstractRequestDto {
 
     String fileName;
 
-    File file; //TODO
+    byte[] file;
 
     String userId;
 

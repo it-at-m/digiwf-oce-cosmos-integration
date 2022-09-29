@@ -1,5 +1,6 @@
 package io.muenchendigital.digiwf.ocecosmos.integration.api.streaming;
 
+import com.google.common.jimfs.Jimfs;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.JobRequestDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.OceCosmosEventDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.response.OceCosmosErrorDto;
@@ -14,6 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.Message;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -46,8 +52,11 @@ public class OceCosmosStreamingEventListener {
             final var printRequest = (JobRequestDto) message.getPayload().getRequest();
 
             Object printJobResult;
-            try {
+
+            try(FileSystem fileSystem = Jimfs.newFileSystem()) {
                 final JobRequest model = this.oceCosmosMapper.dto2Model(printRequest);
+                model.setFile(convertByteArrayToFile(printRequest, fileSystem));
+
                 printJobResult = this.jobService.submitJob(model);
             } catch (final Exception exception) {
                 printJobResult = new OceCosmosErrorDto(exception.getMessage());
@@ -58,6 +67,15 @@ public class OceCosmosStreamingEventListener {
                     Map.of(RESPONSE, printJobResult)
             );
         };
+    }
+
+    private File convertByteArrayToFile(JobRequestDto printRequest, FileSystem fileSystem) throws IOException {
+        //Convert Byte-Array from request to in-mem file
+        Path tmpPath = fileSystem.getPath("/tmp");
+        Files.createDirectory(tmpPath);
+        Path filePath = tmpPath.resolve(printRequest.getFileName());
+        Files.write(filePath, printRequest.getFile());
+        return filePath.toFile();
     }
 
 
