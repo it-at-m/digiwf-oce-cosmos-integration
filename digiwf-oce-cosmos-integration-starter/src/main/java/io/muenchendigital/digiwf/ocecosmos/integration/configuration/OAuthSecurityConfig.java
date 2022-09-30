@@ -18,7 +18,7 @@ public class OAuthSecurityConfig {
     }
 
     @Bean
-    @ConfigurationProperties("cosmos.client")
+    @ConfigurationProperties("io.muenchendigital.digiwf.ocecosmos.oauth-client")
     public OAuth2ProtectedResourceDetails cosmosWebauthClient() {
         return new ResourceOwnerPasswordResourceDetails();
     }

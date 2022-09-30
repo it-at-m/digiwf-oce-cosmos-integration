@@ -2,16 +2,22 @@ io:
   muenchendigital:
     digiwf:
       ocecosmos:
-          url: '<oce-cosmos-url>'
-
-cosmos:
-  client:
-    username:
-    password:
-    clientId:
-    accessTokenUri:
-    clientSecret:
-    scope:
+        url: '<oce-cosmos-url>'
+        defaults:
+          applicationName:
+          debtor:
+          printJob:
+          mailJob:
+          archiveJob:
+          hostName:
+          userId:
+        oauth-client:
+          username:
+          password:
+          clientId:
+          accessTokenUri: ${io.muenchendigital.digiwf.ocecosmos.url}/cosmos-webauth/oauth/token
+          clientSecret:
+          scope:
 
 spring:
   cloud:
