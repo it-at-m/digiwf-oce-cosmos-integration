@@ -19,11 +19,11 @@ public abstract class JobRequestMapper {
 
     @Mapping(target = "client", source = "clientId")
     @Mapping(target = "title",
-            expression = "java(jobRequest.getApplicationName() + \".\" + jobRequest.getLayoutName() + \".\" + jobRequest.getJobType())")
+            expression = "java(jobRequest.getApplicationName() + \".\" + jobRequest.getTemplateName() + \".\" + jobRequest.getJobType())")
     @Mapping(target = "textStatus",
             expression = "java(\"Empfange Datensätze aus \" + jobRequest.getApplicationName())")
     @Mapping(target = "customField", source = "jobType")
-    @Mapping(target = "customField1", source = "layoutName")
+    @Mapping(target = "customField1", source = "templateName")
     @Mapping(target = "customField2", source = "deliveryType")
     public abstract Jobs mapToJobs(JobRequest jobRequest);
 
