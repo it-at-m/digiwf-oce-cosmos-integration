@@ -5,6 +5,7 @@ import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.JobReques
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.OceCosmosEventDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.response.OceCosmosErrorDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.mapper.OceCosmosMapper;
+import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DataTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.response.JobResponse;
 import io.muenchendigital.digiwf.ocecosmos.integration.service.JobService;

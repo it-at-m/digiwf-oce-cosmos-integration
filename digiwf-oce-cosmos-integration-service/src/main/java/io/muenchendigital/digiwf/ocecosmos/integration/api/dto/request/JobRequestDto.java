@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.io.File;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,7 +17,7 @@ public class JobRequestDto extends AbstractRequestDto {
 
     String jobType;
 
-    String layoutName;
+    String templateName;
 
     DeliveryTypes deliveryType;
 

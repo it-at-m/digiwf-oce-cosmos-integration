@@ -12,7 +12,7 @@ public class JobRequest {
 
     String jobType;
 
-    String layoutName;
+    String templateName;
 
     DeliveryTypes deliveryType;
 

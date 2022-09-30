@@ -26,19 +26,22 @@ public abstract class OceCosmosMapper {
     private String hostNameDefault;
     @Value("io.muenchendigital.digiwf.ocecosmos.defaults.userId:")
     private String userIdDefault;
+    @Value("io.muenchendigital.digiwf.ocecosmos.defaults.dataType:")
+    private String dataTypeDefault;
     @Value("io.muenchendigital.digiwf.ocecosmos.oauth-client.clientId")
     private String clientId;
 
-    @Mapping(target = "applicationName", source = "applicationName", defaultExpression = "java(applicationNameDefault())")
-    @Mapping(target = "debtor", source = "debtor", defaultExpression = "java(debtorDefault())")
-    @Mapping(target = "printJob", source = "printJob", defaultExpression = "java(printJobDefault())")
-    @Mapping(target = "mailJob", source = "mailJob", defaultExpression = "java(mailJobDefault())")
-    @Mapping(target = "archiveJob", source = "archiveJob", defaultExpression = "java(archiveJobDefault())")
-    @Mapping(target = "hostName", source = "hostName", defaultExpression = "java(hostNameDefault())")
-    @Mapping(target = "userId", source = "userId", defaultExpression = "java(userIdDefault())")
+    @Mapping(target = "applicationName", source = "applicationName", defaultExpression = "java(getApplicationNameDefault())")
+    @Mapping(target = "debtor", source = "debtor", defaultExpression = "java(getDebtorDefault())")
+    @Mapping(target = "printJob", source = "printJob", defaultExpression = "java(getPrintJobDefault())")
+    @Mapping(target = "mailJob", source = "mailJob", defaultExpression = "java(getMailJobDefault())")
+    @Mapping(target = "archiveJob", source = "archiveJob", defaultExpression = "java(getArchiveJobDefault())")
+    @Mapping(target = "hostName", source = "hostName", defaultExpression = "java(getHostNameDefault())")
+    @Mapping(target = "userId", source = "userId", defaultExpression = "java(getUserIdDefault())")
+    @Mapping(target = "dataType", source = "dataType", defaultExpression = "java(getDataTypeDefault())")
     @Mapping(target = "clientId", expression = "java(getClientId())")
     @Mapping(target = "file", ignore = true)
-    abstract JobRequest dto2Model(final JobRequestDto jobRequestDto);
+    public abstract JobRequest dto2Model(final JobRequestDto jobRequestDto);
 
 
 }
