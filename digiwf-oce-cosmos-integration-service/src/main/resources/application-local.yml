@@ -4,6 +4,15 @@ io:
       ocecosmos:
           url: '<oce-cosmos-url>'
 
+cosmos:
+  client:
+    username:
+    password:
+    clientId:
+    accessTokenUri:
+    clientSecret:
+    scope:
+
 spring:
   cloud:
     function:
