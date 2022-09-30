@@ -2,6 +2,7 @@ package io.muenchendigital.digiwf.ocecosmos.integration.api.mapper;
 
 import io.muenchendigital.digiwf.ocecosmos.integration.api.configuration.MapstructConfiguration;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.JobRequestDto;
+import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DataTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
 import lombok.Data;
 import org.mapstruct.Mapper;
@@ -17,17 +18,17 @@ public abstract class OceCosmosMapper {
     @Value("io.muenchendigital.digiwf.ocecosmos.defaults.debtor:")
     private String debtorDefault;
     @Value("io.muenchendigital.digiwf.ocecosmos.defaults.printJob:")
-    private String printJobDefault;
+    private boolean printJobDefault;
     @Value("io.muenchendigital.digiwf.ocecosmos.defaults.mailJob:")
-    private String mailJobDefault;
+    private boolean mailJobDefault;
     @Value("io.muenchendigital.digiwf.ocecosmos.defaults.archiveJob:")
-    private String archiveJobDefault;
+    private boolean archiveJobDefault;
     @Value("io.muenchendigital.digiwf.ocecosmos.defaults.hostName:")
     private String hostNameDefault;
     @Value("io.muenchendigital.digiwf.ocecosmos.defaults.userId:")
     private String userIdDefault;
     @Value("io.muenchendigital.digiwf.ocecosmos.defaults.dataType:")
-    private String dataTypeDefault;
+    private DataTypes dataTypeDefault;
     @Value("io.muenchendigital.digiwf.ocecosmos.oauth-client.clientId")
     private String clientId;
 
