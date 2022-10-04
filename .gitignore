@@ -39,3 +39,6 @@ gradle
 #Swagger
 .swagger-codegen
 .swagger-codegen-ignore
+
+#Keystores
+*.jks
