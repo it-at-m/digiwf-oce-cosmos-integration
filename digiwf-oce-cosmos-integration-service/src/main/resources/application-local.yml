@@ -5,6 +5,7 @@ io:
         url: '<oce-cosmos-url>'
         defaults:
           applicationName:
+          jobType:
           debtor:
           printJob: true
           mailJob: false

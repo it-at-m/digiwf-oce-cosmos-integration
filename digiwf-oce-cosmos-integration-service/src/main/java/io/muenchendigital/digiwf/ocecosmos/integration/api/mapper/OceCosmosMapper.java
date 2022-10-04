@@ -15,6 +15,8 @@ public abstract class OceCosmosMapper {
 
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.applicationName:}")
     private String applicationNameDefault;
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.jobType:}")
+    private String jobTypeDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.debtor:}")
     private String debtorDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.printJob:true}")
@@ -32,6 +34,7 @@ public abstract class OceCosmosMapper {
     @Value("${io.muenchendigital.digiwf.ocecosmos.oauth-client.clientId}")
     private String clientId;
 
+    @Mapping(target = "jobType", source = "jobType", defaultExpression = "java(getJobTypeDefault())")
     @Mapping(target = "applicationName", source = "applicationName", defaultExpression = "java(getApplicationNameDefault())")
     @Mapping(target = "debtor", source = "debtor", defaultExpression = "java(getDebtorDefault())")
     @Mapping(target = "printJob", source = "printJob", defaultExpression = "java(getPrintJobDefault())")
