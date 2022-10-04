@@ -6,9 +6,9 @@ io:
         defaults:
           applicationName:
           debtor:
-          printJob:
-          mailJob:
-          archiveJob:
+          printJob: true
+          mailJob: false
+          archiveJob: false
           hostName:
           userId:
           dataType:

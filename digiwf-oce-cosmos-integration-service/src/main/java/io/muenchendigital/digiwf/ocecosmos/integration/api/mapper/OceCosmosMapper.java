@@ -13,23 +13,23 @@ import org.springframework.beans.factory.annotation.Value;
 @Data
 public abstract class OceCosmosMapper {
 
-    @Value("io.muenchendigital.digiwf.ocecosmos.defaults.applicationName:")
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.applicationName:}")
     private String applicationNameDefault;
-    @Value("io.muenchendigital.digiwf.ocecosmos.defaults.debtor:")
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.debtor:}")
     private String debtorDefault;
-    @Value("io.muenchendigital.digiwf.ocecosmos.defaults.printJob:")
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.printJob:true}")
     private boolean printJobDefault;
-    @Value("io.muenchendigital.digiwf.ocecosmos.defaults.mailJob:")
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.mailJob:false}")
     private boolean mailJobDefault;
-    @Value("io.muenchendigital.digiwf.ocecosmos.defaults.archiveJob:")
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.archiveJob:false}")
     private boolean archiveJobDefault;
-    @Value("io.muenchendigital.digiwf.ocecosmos.defaults.hostName:")
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.hostName:}")
     private String hostNameDefault;
-    @Value("io.muenchendigital.digiwf.ocecosmos.defaults.userId:")
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.userId:}")
     private String userIdDefault;
-    @Value("io.muenchendigital.digiwf.ocecosmos.defaults.dataType:")
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.dataType:}")
     private DataTypes dataTypeDefault;
-    @Value("io.muenchendigital.digiwf.ocecosmos.oauth-client.clientId")
+    @Value("${io.muenchendigital.digiwf.ocecosmos.oauth-client.clientId}")
     private String clientId;
 
     @Mapping(target = "applicationName", source = "applicationName", defaultExpression = "java(getApplicationNameDefault())")
