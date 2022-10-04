@@ -2,7 +2,7 @@ package io.muenchendigital.digiwf.ocecosmos.integration.model.request;
 
 import lombok.Data;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 
 @Data
@@ -36,7 +36,7 @@ public class JobRequest {
 
     String fileName;
 
-    File file;
+    Path file;
 
     String userId;
 

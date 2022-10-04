@@ -5,7 +5,6 @@ import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.JobReques
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.OceCosmosEventDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.response.OceCosmosErrorDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.mapper.OceCosmosMapper;
-import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DataTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.response.JobResponse;
 import io.muenchendigital.digiwf.ocecosmos.integration.service.JobService;
@@ -16,7 +15,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.Message;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
@@ -70,13 +68,13 @@ public class OceCosmosStreamingEventListener {
         };
     }
 
-    private File convertByteArrayToFile(JobRequestDto printRequest, FileSystem fileSystem) throws IOException {
+    private Path convertByteArrayToFile(JobRequestDto printRequest, FileSystem fileSystem) throws IOException {
         //Convert Byte-Array from request to in-mem file
-        Path tmpPath = fileSystem.getPath("/tmp");
+        Path tmpPath = fileSystem.getPath("tmp");
         Files.createDirectory(tmpPath);
         Path filePath = tmpPath.resolve(printRequest.getFileName());
         Files.write(filePath, printRequest.getFile());
-        return filePath.toFile();
+        return filePath;
     }
 
 

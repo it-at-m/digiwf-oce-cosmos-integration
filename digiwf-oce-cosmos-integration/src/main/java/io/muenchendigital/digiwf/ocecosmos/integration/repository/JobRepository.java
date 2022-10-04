@@ -5,20 +5,17 @@ import io.muenchendigital.digiwf.ocecosmos.integration.exception.OceCosmosIntegr
 import io.muenchendigital.digiwf.ocecosmos.integration.exception.OceCosmosIntegrationServerErrorException;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.FileStatusOperationsApi;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.JobAttributeOperationsApi;
+import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.JobOperationsApi;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.Filestatus;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.JobAttribute;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.Jobs;
-import io.muenchendigital.digiwf.ocecosmos.integration.gen.api.JobOperationsApi;
-import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.RestClientException;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -56,7 +53,7 @@ public class JobRepository {
      */
     public List<Jobs> queryJobs(final Jobs prototype) throws OceCosmosIntegrationClientErrorException, OceCosmosIntegrationServerErrorException, OceCosmosIntegrationException {
 
-        String search = String.format("status==0 and customField==SAMMELJOB and customField1==%s customField2==%s",
+        String search = String.format("status==0 and customField==SAMMELJOB and customField1==%s and customField2==%s",
                 prototype.getCustomField1(), prototype.getCustomField2());
         return catchErrors(() -> this.jobOperationsApi.getUsingGET7(null, null, null, search), "query for jobs");
     }
@@ -87,7 +84,7 @@ public class JobRepository {
      * @throws OceCosmosIntegrationServerErrorException if the problem is with address service.
      * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to address service or client.
      */
-    public void addDataToJob(final Filestatus filestatus, final File file, Long id) throws OceCosmosIntegrationClientErrorException, OceCosmosIntegrationServerErrorException, OceCosmosIntegrationException {
+    public void addDataToJob(final Filestatus filestatus, final Path file, Long id) throws OceCosmosIntegrationClientErrorException, OceCosmosIntegrationServerErrorException, OceCosmosIntegrationException {
 
         catchErrors(() -> {
             this.fileStatusOperationsApi.postUsingPOST2(id, file, filestatus);

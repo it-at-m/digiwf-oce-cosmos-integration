@@ -3,6 +3,7 @@ package io.muenchendigital.digiwf.ocecosmos.integration.model.mapper;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.Filestatus;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.JobAttribute;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.Jobs;
+import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DeliveryTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -43,7 +44,9 @@ public abstract class JobRequestMapper {
         result.add(new JobAttribute().jobId(jobId).attributeName("USER").attributeValue(jobRequest.getUserId()));
         result.add(new JobAttribute().jobId(jobId).attributeName("ERST_DATUM").attributeValue(LocalDateTime.now().format(dateTimeFormatter)));
         result.add(new JobAttribute().jobId(jobId).attributeName("EMAIL").attributeValue(jobRequest.getEmail()));
-        result.add(new JobAttribute().jobId(jobId).attributeName("ABHOL").attributeValue(jobRequest.getPickupLocation()));
+        if(jobRequest.getDeliveryType().equals(DeliveryTypes.DIENSTVERSAND)) {
+            result.add(new JobAttribute().jobId(jobId).attributeName("ABHOL").attributeValue(jobRequest.getPickupLocation()));
+        }
         result.add(new JobAttribute().jobId(jobId).attributeName("DRUCKEN").attributeValue(jobRequest.isPrintJob() ? "1": "0"));
         result.add(new JobAttribute().jobId(jobId).attributeName("MAILEN").attributeValue(jobRequest.isMailJob() ? "1": "0"));
         result.add(new JobAttribute().jobId(jobId).attributeName("ARCHIVIEREN").attributeValue(jobRequest.isArchiveJob() ? "1": "0"));

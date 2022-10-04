@@ -1,22 +1,8 @@
 package io.muenchendigital.digiwf.ocecosmos.integration.gen.api;
 
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.ApiClient;
-
-import java.io.File;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.Filestatus;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
@@ -24,6 +10,17 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component("io.muenchendigital.digiwf.ocecosmos.integration.gen.api.FileStatusOperationsApi")
 public class FileStatusOperationsApi {
@@ -351,7 +348,7 @@ public class FileStatusOperationsApi {
      * @param fileStatus  (optional)
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public void postUsingPOST2(Long id, File file, Object fileStatus) throws RestClientException {
+    public void postUsingPOST2(Long id, Path file, Object fileStatus) throws RestClientException {
         postUsingPOST2WithHttpInfo(id, file, fileStatus);
     }
 
@@ -365,7 +362,7 @@ public class FileStatusOperationsApi {
      * @return ResponseEntity&lt;Void&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<Void> postUsingPOST2WithHttpInfo(Long id, File file, Object fileStatus) throws RestClientException {
+    public ResponseEntity<Void> postUsingPOST2WithHttpInfo(Long id, Path file, Object fileStatus) throws RestClientException {
         Object postBody = null;
         // verify the required parameter 'id' is set
         if (id == null) {
