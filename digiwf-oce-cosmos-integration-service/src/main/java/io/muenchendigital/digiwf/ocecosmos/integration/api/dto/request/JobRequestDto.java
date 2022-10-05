@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 public class JobRequestDto extends AbstractRequestDto {
 
-    String clientId;
-
     String jobType;
 
     String templateName;
