@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
@@ -22,8 +20,6 @@ public class JobRequestDto extends AbstractRequestDto {
     DataTypes dataType;
 
     String applicationName;
-
-    LocalDateTime createDateTime;
 
     String debtor;
 

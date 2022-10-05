@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.nio.file.Path;
-import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -21,8 +20,6 @@ public class JobRequest {
     DataTypes dataType;
 
     String applicationName;
-
-    LocalDateTime createDateTime;
 
     String debtor;
 
