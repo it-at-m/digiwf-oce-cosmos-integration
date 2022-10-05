@@ -32,8 +32,8 @@ public class JobService {
      * @param job with all job-attributes and file
      * @return job-response with metadata from corresponding job, like jobId
      * @throws OceCosmosIntegrationClientErrorException if the problem is with the client.
-     * @throws OceCosmosIntegrationServerErrorException if the problem is with address service.
-     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to address service or client.
+     * @throws OceCosmosIntegrationServerErrorException if the problem is with oce-cosmos service.
+     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to oce-cosmos service or client.
      */
     public JobResponse submitJob(final JobRequest job) throws OceCosmosIntegrationServerErrorException, OceCosmosIntegrationException, OceCosmosIntegrationClientErrorException {
 

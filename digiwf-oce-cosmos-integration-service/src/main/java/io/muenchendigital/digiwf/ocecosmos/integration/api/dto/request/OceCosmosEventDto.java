@@ -6,7 +6,7 @@ import lombok.Data;
 public class OceCosmosEventDto {
 
     /**
-     * The payload to request address service.
+     * The payload to request oce-cosmos service.
      */
     private AbstractRequestDto request;
 

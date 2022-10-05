@@ -34,8 +34,8 @@ public class JobRepository {
      * For params and return value see {@link JobOperationsApi#postUsingPOST5}.
      *
      * @throws OceCosmosIntegrationClientErrorException if the problem is with the client.
-     * @throws OceCosmosIntegrationServerErrorException if the problem is with address service.
-     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to address service or client.
+     * @throws OceCosmosIntegrationServerErrorException if the problem is with oce-cosmos service.
+     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to oce-cosmos service or client.
      */
     public Jobs createJob(final Jobs body) throws OceCosmosIntegrationClientErrorException, OceCosmosIntegrationServerErrorException, OceCosmosIntegrationException {
         return catchErrors(() -> this.jobOperationsApi.postUsingPOST5(body), "create a job");
@@ -48,8 +48,8 @@ public class JobRepository {
      * For params and return value see {@link JobOperationsApi#getUsingGET7}.
      *
      * @throws OceCosmosIntegrationClientErrorException if the problem is with the client.
-     * @throws OceCosmosIntegrationServerErrorException if the problem is with address service.
-     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to address service or client.
+     * @throws OceCosmosIntegrationServerErrorException if the problem is with oce-cosmos service.
+     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to oce-cosmos service or client.
      */
     public List<Jobs> queryJobs(final Jobs prototype) throws OceCosmosIntegrationClientErrorException, OceCosmosIntegrationServerErrorException, OceCosmosIntegrationException {
 
@@ -64,8 +64,8 @@ public class JobRepository {
      * For params and return value see {@link JobAttributeOperationsApi#putUsingPUT2}.
      *
      * @throws OceCosmosIntegrationClientErrorException if the problem is with the client.
-     * @throws OceCosmosIntegrationServerErrorException if the problem is with address service.
-     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to address service or client.
+     * @throws OceCosmosIntegrationServerErrorException if the problem is with oce-cosmos service.
+     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to oce-cosmos service or client.
      */
     public void addJobAttributesToJob(final List<JobAttribute> attributes, Long id) throws OceCosmosIntegrationClientErrorException, OceCosmosIntegrationServerErrorException, OceCosmosIntegrationException {
 
@@ -81,8 +81,8 @@ public class JobRepository {
      * For params and return value see {@link FileStatusOperationsApi#postUsingPOST2}.
      *
      * @throws OceCosmosIntegrationClientErrorException if the problem is with the client.
-     * @throws OceCosmosIntegrationServerErrorException if the problem is with address service.
-     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to address service or client.
+     * @throws OceCosmosIntegrationServerErrorException if the problem is with oce-cosmos service.
+     * @throws OceCosmosIntegrationException            if the problem cannot be assigned directly to oce-cosmos service or client.
      */
     public void addDataToJob(final Filestatus filestatus, final Path file, Long id) throws OceCosmosIntegrationClientErrorException, OceCosmosIntegrationServerErrorException, OceCosmosIntegrationException {
 
