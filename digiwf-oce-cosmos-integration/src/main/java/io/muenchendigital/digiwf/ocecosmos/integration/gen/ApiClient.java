@@ -69,7 +69,7 @@ public class ApiClient {
     
     private HttpHeaders defaultHeaders = new HttpHeaders();
     
-    private String basePath = "http://syshubk001.srv.muenchen.de:8088/";
+    private String basePath = "/";
 
     private RestTemplate restTemplate;
 

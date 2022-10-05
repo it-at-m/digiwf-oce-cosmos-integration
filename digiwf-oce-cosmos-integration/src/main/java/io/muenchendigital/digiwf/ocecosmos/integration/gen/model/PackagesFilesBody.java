@@ -12,12 +12,15 @@
 
 package io.muenchendigital.digiwf.ocecosmos.integration.gen.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.File;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * PackagesFilesBody
  */
