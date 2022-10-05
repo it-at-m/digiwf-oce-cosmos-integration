@@ -43,13 +43,18 @@ public abstract class JobRequestMapper {
         result.add(new JobAttribute().jobId(jobId).attributeName("DEBITOR").attributeValue(jobRequest.getDebtor()));
         result.add(new JobAttribute().jobId(jobId).attributeName("USER").attributeValue(jobRequest.getUserId()));
         result.add(new JobAttribute().jobId(jobId).attributeName("ERST_DATUM").attributeValue(LocalDateTime.now().format(dateTimeFormatter)));
-        result.add(new JobAttribute().jobId(jobId).attributeName("EMAIL").attributeValue(jobRequest.getEmail()));
+
         if(jobRequest.getDeliveryType().equals(DeliveryTypes.DIENSTVERSAND)) {
             result.add(new JobAttribute().jobId(jobId).attributeName("ABHOL").attributeValue(jobRequest.getPickupLocation()));
         }
+
         result.add(new JobAttribute().jobId(jobId).attributeName("DRUCKEN").attributeValue(jobRequest.isPrintJob() ? "1": "0"));
         result.add(new JobAttribute().jobId(jobId).attributeName("MAILEN").attributeValue(jobRequest.isMailJob() ? "1": "0"));
         result.add(new JobAttribute().jobId(jobId).attributeName("ARCHIVIEREN").attributeValue(jobRequest.isArchiveJob() ? "1": "0"));
+
+        if(jobRequest.isMailJob()) {
+            result.add(new JobAttribute().jobId(jobId).attributeName("EMAIL").attributeValue(jobRequest.getEmail()));
+        }
 
         return result;
     }
