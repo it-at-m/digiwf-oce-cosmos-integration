@@ -12,18 +12,16 @@
 
 package io.muenchendigital.digiwf.ocecosmos.integration.gen.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.StackTraceElement;
-import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.Throwable;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
-import javax.validation.constraints.*;
+
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 /**
  * WebException
  */
@@ -146,7 +144,7 @@ public class WebException {
   private List<Throwable> suppressed = null;
 
   @JsonProperty("timestamp")
-  private String timestamp = null;
+  private Date timestamp = null;
 
   public WebException cause(Throwable cause) {
     this.cause = cause;
@@ -275,7 +273,7 @@ public class WebException {
     this.suppressed = suppressed;
   }
 
-  public WebException timestamp(String timestamp) {
+  public WebException timestamp(Date timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -284,12 +282,13 @@ public class WebException {
    * Get timestamp
    * @return timestamp
   **/
+  @Valid
   @Schema(description = "")
-  public String getTimestamp() {
+  public Date getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(String timestamp) {
+  public void setTimestamp(Date timestamp) {
     this.timestamp = timestamp;
   }
 

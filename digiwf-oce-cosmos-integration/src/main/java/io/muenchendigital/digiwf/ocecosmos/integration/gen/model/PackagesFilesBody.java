@@ -12,15 +12,12 @@
 
 package io.muenchendigital.digiwf.ocecosmos.integration.gen.model;
 
-import java.util.Objects;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.File;
-import javax.validation.constraints.*;
+
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 /**
  * PackagesFilesBody
  */
@@ -28,9 +25,9 @@ import javax.validation.Valid;
 
 public class PackagesFilesBody {
   @JsonProperty("packageFile")
-  private File packageFile = null;
+  private java.nio.file.Path packageFile = null;
 
-  public PackagesFilesBody packageFile(File packageFile) {
+  public PackagesFilesBody packageFile(java.nio.file.Path packageFile) {
     this.packageFile = packageFile;
     return this;
   }
@@ -42,11 +39,11 @@ public class PackagesFilesBody {
   @NotNull
   @Valid
   @Schema(required = true, description = "The .ppk or .cel package file to upload to the server for import purposes. The package file MUST be included as octet-stream in a multipart/form-data part of name \"packageFile\" with the required filename parameter.")
-  public File getPackageFile() {
+  public java.nio.file.Path getPackageFile() {
     return packageFile;
   }
 
-  public void setPackageFile(File packageFile) {
+  public void setPackageFile(java.nio.file.Path packageFile) {
     this.packageFile = packageFile;
   }
 

@@ -1,22 +1,8 @@
 package io.muenchendigital.digiwf.ocecosmos.integration.gen.api;
 
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.ApiClient;
-
-import java.io.File;
 import io.muenchendigital.digiwf.ocecosmos.integration.gen.model.Jobs;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
@@ -24,6 +10,16 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component("io.muenchendigital.digiwf.ocecosmos.integration.gen.api.JobOperationsApi")
 public class JobOperationsApi {
@@ -251,7 +247,7 @@ public class JobOperationsApi {
      * @param ticketFile  (optional)
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public void postUsingPOST3(Object job, File sourceFile, File ticketFile) throws RestClientException {
+    public void postUsingPOST3(Object job, java.nio.file.Path sourceFile, java.nio.file.Path ticketFile) throws RestClientException {
         postUsingPOST3WithHttpInfo(job, sourceFile, ticketFile);
     }
 
@@ -265,7 +261,7 @@ public class JobOperationsApi {
      * @return ResponseEntity&lt;Void&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<Void> postUsingPOST3WithHttpInfo(Object job, File sourceFile, File ticketFile) throws RestClientException {
+    public ResponseEntity<Void> postUsingPOST3WithHttpInfo(Object job, java.nio.file.Path sourceFile, java.nio.file.Path ticketFile) throws RestClientException {
         Object postBody = null;
         String path = UriComponentsBuilder.fromPath("/webapi/v3/jobs/submit").build().toUriString();
         
