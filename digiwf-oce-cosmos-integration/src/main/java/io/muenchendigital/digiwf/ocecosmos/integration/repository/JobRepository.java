@@ -60,6 +60,7 @@ public class JobRepository {
 
     /**
      * Add {@link JobAttribute}s to a given {@link Jobs}.
+     * {@link JobAttribute}s are meta-data for all print jobs within a {@link Jobs}-Pool.
      * <p>
      * For params and return value see {@link JobAttributeOperationsApi#putUsingPUT2}.
      *
@@ -76,7 +77,8 @@ public class JobRepository {
     }
 
     /**
-     * Add {@link JobAttribute}s to a given {@link Jobs}.
+     * Add {@link Filestatus}s and a File to a given {@link Jobs}.
+     * Processed along all other Files within a {@link Jobs}-Pool.
      * <p>
      * For params and return value see {@link FileStatusOperationsApi#postUsingPOST2}.
      *
