@@ -26,6 +26,7 @@ public abstract class JobRequestMapper {
     @Mapping(target = "customField", source = "jobType")
     @Mapping(target = "customField1", source = "templateName")
     @Mapping(target = "customField2", source = "deliveryType")
+    @Mapping(target = "inputChannel", constant = "RESTAPI")
     public abstract Jobs mapToJobs(JobRequest jobRequest);
 
     @Mapping(target = "textStatus",
