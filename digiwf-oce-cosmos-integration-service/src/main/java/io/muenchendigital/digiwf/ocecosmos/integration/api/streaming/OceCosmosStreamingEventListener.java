@@ -2,7 +2,6 @@ package io.muenchendigital.digiwf.ocecosmos.integration.api.streaming;
 
 import com.google.common.jimfs.Jimfs;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.JobRequestDto;
-import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.OceCosmosEventDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.response.OceCosmosErrorDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.mapper.OceCosmosMapper;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
@@ -37,18 +36,18 @@ public class OceCosmosStreamingEventListener {
 
 
     /**
-     * The Consumer expects an {@link OceCosmosEventDto} which represents an {@link JobRequestDto}.
+     * The Consumer expects an {@link JobRequestDto}.
      * <p>
      * After successfully requesting the printing job a JSON representing a {@link JobResponse} is returned.
      * <p>
      * In case of an error the error message is returned as a JSON representing {@link OceCosmosErrorDto}.
      */
     @Bean
-    public Consumer<Message<OceCosmosEventDto>> requestPrint() {
+    public Consumer<Message<JobRequestDto>> requestPrint() {
         return message -> {
             log.debug(message.toString());
 
-            final var printRequest = (JobRequestDto) message.getPayload().getRequest();
+            final var printRequest = message.getPayload();
 
             Object printJobResult;
 
