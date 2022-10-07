@@ -28,9 +28,9 @@ import javax.validation.Valid;
 
 public class PackagesFilesBody {
   @JsonProperty("packageFile")
-  private File packageFile = null;
+  private java.nio.file.Path packageFile = null;
 
-  public PackagesFilesBody packageFile(File packageFile) {
+  public PackagesFilesBody packageFile(java.nio.file.Path packageFile) {
     this.packageFile = packageFile;
     return this;
   }
@@ -42,11 +42,11 @@ public class PackagesFilesBody {
   @NotNull
   @Valid
   @Schema(required = true, description = "The .ppk or .cel package file to upload to the server for import purposes. The package file MUST be included as octet-stream in a multipart/form-data part of name \"packageFile\" with the required filename parameter.")
-  public File getPackageFile() {
+  public java.nio.file.Path getPackageFile() {
     return packageFile;
   }
 
-  public void setPackageFile(File packageFile) {
+  public void setPackageFile(java.nio.file.Path packageFile) {
     this.packageFile = packageFile;
   }
 

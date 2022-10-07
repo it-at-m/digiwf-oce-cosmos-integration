@@ -31,10 +31,10 @@ public class JobsSubmitBody {
   private Object job = null;
 
   @JsonProperty("sourceFile")
-  private File sourceFile = null;
+  private java.nio.file.Path sourceFile = null;
 
   @JsonProperty("ticketFile")
-  private File ticketFile = null;
+  private java.nio.file.Path ticketFile = null;
 
   public JobsSubmitBody job(Object job) {
     this.job = job;
@@ -54,7 +54,7 @@ public class JobsSubmitBody {
     this.job = job;
   }
 
-  public JobsSubmitBody sourceFile(File sourceFile) {
+  public JobsSubmitBody sourceFile(java.nio.file.Path sourceFile) {
     this.sourceFile = sourceFile;
     return this;
   }
@@ -65,15 +65,15 @@ public class JobsSubmitBody {
   **/
   @Valid
   @Schema(description = "An optional source/data file to upload to the server and link with the created job. The source file MUST be included as an octet-stream in a multipart/form-data part of name \"sourceFile\" with the required filename parameter.")
-  public File getSourceFile() {
+  public java.nio.file.Path getSourceFile() {
     return sourceFile;
   }
 
-  public void setSourceFile(File sourceFile) {
+  public void setSourceFile(java.nio.file.Path sourceFile) {
     this.sourceFile = sourceFile;
   }
 
-  public JobsSubmitBody ticketFile(File ticketFile) {
+  public JobsSubmitBody ticketFile(java.nio.file.Path ticketFile) {
     this.ticketFile = ticketFile;
     return this;
   }
@@ -84,11 +84,11 @@ public class JobsSubmitBody {
   **/
   @Valid
   @Schema(description = "An optional ticket file to upload to the server and link with the created job. The ticket file MUST be included as octet-stream in a multipart/form-data part of name \"ticketFile\" with the required filename parameter.")
-  public File getTicketFile() {
+  public java.nio.file.Path getTicketFile() {
     return ticketFile;
   }
 
-  public void setTicketFile(File ticketFile) {
+  public void setTicketFile(java.nio.file.Path ticketFile) {
     this.ticketFile = ticketFile;
   }
 

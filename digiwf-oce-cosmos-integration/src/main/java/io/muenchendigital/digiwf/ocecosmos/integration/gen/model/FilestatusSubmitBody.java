@@ -28,12 +28,12 @@ import javax.validation.Valid;
 
 public class FilestatusSubmitBody {
   @JsonProperty("file")
-  private File file = null;
+  private java.nio.file.Path file = null;
 
   @JsonProperty("fileStatus")
   private Object fileStatus = null;
 
-  public FilestatusSubmitBody file(File file) {
+  public FilestatusSubmitBody file(java.nio.file.Path file) {
     this.file = file;
     return this;
   }
@@ -44,11 +44,11 @@ public class FilestatusSubmitBody {
   **/
   @Valid
   @Schema(description = "An optional file to upload to the server and link with the created file status. The file MUST be included as an octet-stream in a multipart/form-data part of name \"file\" with the required filename parameter.")
-  public File getFile() {
+  public java.nio.file.Path getFile() {
     return file;
   }
 
-  public void setFile(File file) {
+  public void setFile(java.nio.file.Path file) {
     this.file = file;
   }
 

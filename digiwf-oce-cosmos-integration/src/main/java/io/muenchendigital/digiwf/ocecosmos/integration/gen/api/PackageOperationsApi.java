@@ -92,7 +92,7 @@ public class PackageOperationsApi {
      * @return PackageImportFile
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public PackageImportFile postUsingPOST6(File packageFile) throws RestClientException {
+    public PackageImportFile postUsingPOST6(java.nio.file.Path packageFile) throws RestClientException {
         return postUsingPOST6WithHttpInfo(packageFile).getBody();
     }
 
@@ -104,7 +104,7 @@ public class PackageOperationsApi {
      * @return ResponseEntity&lt;PackageImportFile&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<PackageImportFile> postUsingPOST6WithHttpInfo(File packageFile) throws RestClientException {
+    public ResponseEntity<PackageImportFile> postUsingPOST6WithHttpInfo(java.nio.file.Path packageFile) throws RestClientException {
         Object postBody = null;
         // verify the required parameter 'packageFile' is set
         if (packageFile == null) {

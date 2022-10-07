@@ -2,7 +2,24 @@ io:
   muenchendigital:
     digiwf:
       ocecosmos:
-          url: '<oce-cosmos-url>'
+        url: '<oce-cosmos-url>'
+        defaults:
+          applicationName:
+          jobType:
+          debtor:
+          printJob: true
+          mailJob: false
+          archiveJob: false
+          hostName:
+          userId:
+          dataType:
+        oauth-client:
+          username:
+          password:
+          clientId:
+          accessTokenUri: ${io.muenchendigital.digiwf.ocecosmos.url}/cosmos-webauth/oauth/token
+          clientSecret:
+          scope:
 
 spring:
   cloud:
@@ -47,7 +64,6 @@ spring:
             trusted:
               packages: '*'
     ssl:
-      key-password: ''
       key-store-location: ''
       key-store-password: ''
       trust-store-location: ''

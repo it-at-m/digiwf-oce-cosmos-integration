@@ -351,7 +351,7 @@ public class FileStatusOperationsApi {
      * @param fileStatus  (optional)
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public void postUsingPOST2(Long id, File file, Object fileStatus) throws RestClientException {
+    public void postUsingPOST2(Long id, java.nio.file.Path file, Object fileStatus) throws RestClientException {
         postUsingPOST2WithHttpInfo(id, file, fileStatus);
     }
 
@@ -365,7 +365,7 @@ public class FileStatusOperationsApi {
      * @return ResponseEntity&lt;Void&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<Void> postUsingPOST2WithHttpInfo(Long id, File file, Object fileStatus) throws RestClientException {
+    public ResponseEntity<Void> postUsingPOST2WithHttpInfo(Long id, java.nio.file.Path file, Object fileStatus) throws RestClientException {
         Object postBody = null;
         // verify the required parameter 'id' is set
         if (id == null) {

@@ -124,8 +124,7 @@
                             </environmentVariables>
 
                             <typeMappings>
-                                <typeMapping>DateTime=String</typeMapping>
-                                <typeMapping>Date=String</typeMapping>
+                                <typeMapping>File=java.nio.file.Path</typeMapping>
                             </typeMappings>
 
                             <additionalProperties>

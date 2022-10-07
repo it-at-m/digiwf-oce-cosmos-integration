@@ -251,7 +251,7 @@ public class JobOperationsApi {
      * @param ticketFile  (optional)
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public void postUsingPOST3(Object job, File sourceFile, File ticketFile) throws RestClientException {
+    public void postUsingPOST3(Object job, java.nio.file.Path sourceFile, java.nio.file.Path ticketFile) throws RestClientException {
         postUsingPOST3WithHttpInfo(job, sourceFile, ticketFile);
     }
 
@@ -265,7 +265,7 @@ public class JobOperationsApi {
      * @return ResponseEntity&lt;Void&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<Void> postUsingPOST3WithHttpInfo(Object job, File sourceFile, File ticketFile) throws RestClientException {
+    public ResponseEntity<Void> postUsingPOST3WithHttpInfo(Object job, java.nio.file.Path sourceFile, java.nio.file.Path ticketFile) throws RestClientException {
         Object postBody = null;
         String path = UriComponentsBuilder.fromPath("/webapi/v3/jobs/submit").build().toUriString();
         

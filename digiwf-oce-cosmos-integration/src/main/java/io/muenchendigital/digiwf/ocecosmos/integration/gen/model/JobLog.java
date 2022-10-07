@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.Date;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
@@ -39,7 +40,7 @@ public class JobLog {
   private String message = null;
 
   @JsonProperty("modifiedTime")
-  private String modifiedTime = null;
+  private Date modifiedTime = null;
 
   @JsonProperty("parentId")
   private Long parentId = null;
@@ -116,7 +117,7 @@ public class JobLog {
     this.message = message;
   }
 
-  public JobLog modifiedTime(String modifiedTime) {
+  public JobLog modifiedTime(Date modifiedTime) {
     this.modifiedTime = modifiedTime;
     return this;
   }
@@ -125,12 +126,13 @@ public class JobLog {
    * Date/time that the job is to be deleted
    * @return modifiedTime
   **/
+  @Valid
   @Schema(description = "Date/time that the job is to be deleted")
-  public String getModifiedTime() {
+  public Date getModifiedTime() {
     return modifiedTime;
   }
 
-  public void setModifiedTime(String modifiedTime) {
+  public void setModifiedTime(Date modifiedTime) {
     this.modifiedTime = modifiedTime;
   }
 

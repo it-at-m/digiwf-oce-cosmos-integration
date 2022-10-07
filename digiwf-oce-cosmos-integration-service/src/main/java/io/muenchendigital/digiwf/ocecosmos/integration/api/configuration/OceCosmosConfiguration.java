@@ -16,6 +16,8 @@ import java.util.Map;
 @AutoConfigureBefore({StreamingConfiguration.class})
 public class OceCosmosConfiguration {
 
+    private static final String HEADER_PRINT_REQUEST = "requestPrint";
+
     /**
      * Bean of type {@link RoutingCallback} to register the routes
      * defined in {@link OceCosmosStreamingEventListener} programmatically.
@@ -24,9 +26,9 @@ public class OceCosmosConfiguration {
      */
     @Bean
     @ConditionalOnMissingBean
-    public MessageRoutingCallback okEwoRouter() {
+    public MessageRoutingCallback oceCosmosRouter() {
         final Map<String, String> typeMappings = new HashMap<>();
-        // Add Mappings here
+        typeMappings.put(HEADER_PRINT_REQUEST, HEADER_PRINT_REQUEST);
         return new RoutingCallback(typeMappings);
     }
 
