@@ -15,10 +15,10 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
-import static org.hamcrest.text.MatchesPattern.matchesPattern;
 import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.text.MatchesPattern.matchesPattern;
 
-public class JobResquestMapperTest {
+public class JobRequestMapperTest {
 
     private final JobRequestMapper jobRequestMapper = Mappers.getMapper(JobRequestMapper.class);
 

@@ -2508,7 +2508,7 @@
   "securityDefinitions": {
     "oauth2schema": {
       "type": "oauth2",
-      "tokenUrl": "http://syshubk001.srv.muenchen.de:8088/cosmos-webauth/oauth/token",
+      "tokenUrl": "",
       "flow": "password",
       "scopes": {
         "public": "public access",
