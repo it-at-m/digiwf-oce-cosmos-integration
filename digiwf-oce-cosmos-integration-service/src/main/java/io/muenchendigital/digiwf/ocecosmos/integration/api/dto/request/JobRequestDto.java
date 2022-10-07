@@ -2,9 +2,11 @@ package io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request;
 
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DataTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DeliveryTypes;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class JobRequestDto {
 
     String jobType;
@@ -23,11 +25,11 @@ public class JobRequestDto {
 
     String pickupLocation;
 
-    boolean printJob;
+    Boolean printJob;
 
-    boolean mailJob;
+    Boolean mailJob;
 
-    boolean archiveJob;
+    Boolean archiveJob;
 
     String fileName;
 

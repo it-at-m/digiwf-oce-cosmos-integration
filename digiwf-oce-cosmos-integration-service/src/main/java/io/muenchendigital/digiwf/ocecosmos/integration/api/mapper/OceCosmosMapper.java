@@ -7,6 +7,7 @@ import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
 import lombok.Data;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Value;
 
 @Mapper(config = MapstructConfiguration.class)
@@ -20,11 +21,11 @@ public abstract class OceCosmosMapper {
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.debtor:}")
     private String debtorDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.printJob:true}")
-    private boolean printJobDefault;
+    private Boolean printJobDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.mailJob:false}")
-    private boolean mailJobDefault;
+    private Boolean mailJobDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.archiveJob:false}")
-    private boolean archiveJobDefault;
+    private Boolean archiveJobDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.hostName:}")
     private String hostNameDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.userId:}")
@@ -37,9 +38,9 @@ public abstract class OceCosmosMapper {
     @Mapping(target = "jobType", source = "jobType", defaultExpression = "java(getJobTypeDefault())")
     @Mapping(target = "applicationName", source = "applicationName", defaultExpression = "java(getApplicationNameDefault())")
     @Mapping(target = "debtor", source = "debtor", defaultExpression = "java(getDebtorDefault())")
-    @Mapping(target = "printJob", source = "printJob", defaultExpression = "java(getPrintJobDefault())")
-    @Mapping(target = "mailJob", source = "mailJob", defaultExpression = "java(getMailJobDefault())")
-    @Mapping(target = "archiveJob", source = "archiveJob", defaultExpression = "java(getArchiveJobDefault())")
+    @Mapping(target = "printJob", source = "printJob", defaultExpression = "java(getPrintJobDefault())", qualifiedByName = "BooleanMapper")
+    @Mapping(target = "mailJob", source = "mailJob", defaultExpression = "java(getMailJobDefault())", qualifiedByName = "BooleanMapper")
+    @Mapping(target = "archiveJob", source = "archiveJob", defaultExpression = "java(getArchiveJobDefault())", qualifiedByName = "BooleanMapper")
     @Mapping(target = "hostName", source = "hostName", defaultExpression = "java(getHostNameDefault())")
     @Mapping(target = "userId", source = "userId", defaultExpression = "java(getUserIdDefault())")
     @Mapping(target = "dataType", source = "dataType", defaultExpression = "java(getDataTypeDefault())")
@@ -47,5 +48,9 @@ public abstract class OceCosmosMapper {
     @Mapping(target = "file", ignore = true)
     public abstract JobRequest dto2Model(final JobRequestDto jobRequestDto);
 
+    @Named("BooleanMapper")
+    public boolean mapBoolean(Boolean bool) {
+        return bool;
+    }
 
 }
