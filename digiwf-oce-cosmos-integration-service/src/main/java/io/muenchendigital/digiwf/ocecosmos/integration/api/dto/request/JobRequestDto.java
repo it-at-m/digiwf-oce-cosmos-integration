@@ -2,11 +2,15 @@ package io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request;
 
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DataTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DeliveryTypes;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class JobRequestDto {
 
     String jobType;
