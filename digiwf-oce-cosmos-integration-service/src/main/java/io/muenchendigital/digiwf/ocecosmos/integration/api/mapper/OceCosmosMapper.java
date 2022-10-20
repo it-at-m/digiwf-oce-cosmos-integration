@@ -1,13 +1,17 @@
 package io.muenchendigital.digiwf.ocecosmos.integration.api.mapper;
 
 import io.muenchendigital.digiwf.ocecosmos.integration.api.configuration.MapstructConfiguration;
-import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.JobRequestDto;
+import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.BaseJobRequestDto;
+import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.FileJobRequestDto;
+import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.TemplateJobRequestDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DataTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
 import lombok.Data;
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.SubclassMapping;
 import org.springframework.beans.factory.annotation.Value;
 
 @Mapper(config = MapstructConfiguration.class)
@@ -46,7 +50,20 @@ public abstract class OceCosmosMapper {
     @Mapping(target = "dataType", source = "dataType", defaultExpression = "java(getDataTypeDefault())")
     @Mapping(target = "clientId", expression = "java(getClientId())")
     @Mapping(target = "file", ignore = true)
-    public abstract JobRequest dto2Model(final JobRequestDto jobRequestDto);
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "templateName", ignore = true)
+    @SubclassMapping(target = JobRequest.class, source = TemplateJobRequestDto.class)
+    @SubclassMapping(target = JobRequest.class, source = FileJobRequestDto.class)
+    public abstract JobRequest baseDto2Model(final BaseJobRequestDto baseJobRequestDto);
+
+    @InheritConfiguration(name = "baseDto2Model")
+    @Mapping(target = "fileName", source = "fileName")
+    @Mapping(target = "templateName", source = "templateName")
+    public abstract JobRequest dto2Model(final TemplateJobRequestDto templateJobRequestDto);
+
+    @InheritConfiguration(name = "baseDto2Model")
+    @Mapping(target = "fileName", source = "fileName")
+    public abstract JobRequest dto2Model(final FileJobRequestDto fileJobRequestDto);
 
     @Named("BooleanMapper")
     public boolean mapBoolean(Boolean bool) {

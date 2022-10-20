@@ -1,6 +1,6 @@
 package io.muenchendigital.digiwf.ocecosmos.integration.api.mapper;
 
-import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.JobRequestDto;
+import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.TemplateJobRequestDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DataTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DeliveryTypes;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,7 +47,7 @@ public class OceCosmosMapperTest {
 
     @Test
     public void allDefaultFieldsTest() {
-        var dto = JobRequestDto.builder().build();
+        var dto = TemplateJobRequestDto.builder().build();
 
         var appNameDefault = "appNameDefault";
         var jobTypeDefault = "jobTypeDefault";
@@ -83,8 +83,8 @@ public class OceCosmosMapperTest {
 
     }
 
-    private JobRequestDto getPrefilledDto() {
-        return JobRequestDto.builder()
+    private TemplateJobRequestDto getPrefilledDto() {
+        return TemplateJobRequestDto.builder()
                 .applicationName("Test-App")
                 .templateName("test-template")
                 .jobType("SAMMELJOB")

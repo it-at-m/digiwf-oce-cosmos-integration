@@ -1,7 +1,8 @@
 package io.muenchendigital.digiwf.ocecosmos.integration.api.streaming;
 
 import com.google.common.jimfs.Jimfs;
-import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.JobRequestDto;
+import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.FileJobRequestDto;
+import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.TemplateJobRequestDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.response.OceCosmosErrorDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.mapper.OceCosmosMapper;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
@@ -15,6 +16,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.Message;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,14 +39,14 @@ public class OceCosmosStreamingEventListener {
 
 
     /**
-     * The Consumer expects an {@link JobRequestDto}.
+     * The Consumer expects an {@link TemplateJobRequestDto}.
      * <p>
      * After successfully requesting the printing job a JSON representing a {@link JobResponse} is returned.
      * <p>
      * In case of an error the error message is returned as a JSON representing {@link OceCosmosErrorDto}.
      */
     @Bean
-    public Consumer<Message<JobRequestDto>> requestPrint() {
+    public Consumer<Message<TemplateJobRequestDto>> requestPrint() {
         return message -> {
             log.debug(message.toString());
 
@@ -53,7 +56,7 @@ public class OceCosmosStreamingEventListener {
 
             try(FileSystem fileSystem = Jimfs.newFileSystem()) {
                 final JobRequest model = this.oceCosmosMapper.dto2Model(printRequest);
-                model.setFile(convertByteArrayToFile(printRequest, fileSystem));
+                model.setFile(convertByteArrayToFile(printRequest.getFile(), printRequest.getFileName(), fileSystem));
 
                 printJobResult = this.jobService.submitJob(model);
             } catch (final Exception exception) {
@@ -67,12 +70,61 @@ public class OceCosmosStreamingEventListener {
         };
     }
 
-    private Path convertByteArrayToFile(JobRequestDto printRequest, FileSystem fileSystem) throws IOException {
+    /**
+     * The Consumer expects an {@link FileJobRequestDto}.
+     * <p>
+     * After successfully requesting the printing job a JSON representing a {@link JobResponse} is returned.
+     * <p>
+     * In case of an error the error message is returned as a JSON representing {@link OceCosmosErrorDto}.
+     */
+    @Bean
+    public Consumer<Message<FileJobRequestDto>> requestPDFPrint() {
+        return message -> {
+            log.debug(message.toString());
+
+            final var printRequest = message.getPayload();
+
+            Object printJobResult;
+
+            if(printRequest.getS3Files().size() != 1) {
+                this.correlateMessageService.sendCorrelateMessage(
+                        message.getHeaders(),
+                        Map.of(RESPONSE, new OceCosmosErrorDto("Only one file is supportet"))
+                );
+                return;
+            }
+
+            try(InputStream fileStream = new URL(printRequest.getS3Files().get(0).getUrl()).openStream();
+                FileSystem fileSystem = Jimfs.newFileSystem()) {
+
+                // download file from s3
+                final var file = fileStream.readAllBytes();
+
+                final JobRequest model = this.oceCosmosMapper.dto2Model(printRequest);
+                model.setFile(convertByteArrayToFile(file, printRequest.getFileName(), fileSystem));
+
+                printJobResult = this.jobService.submitJob(model);
+            } catch (final IOException ex) {
+                log.error("File could not be loaded: {}", ex.getMessage());
+                printJobResult = new OceCosmosErrorDto(ex.getMessage());
+            } catch (final Exception exception) {
+                printJobResult = new OceCosmosErrorDto(exception.getMessage());
+            }
+
+            this.correlateMessageService.sendCorrelateMessage(
+                    message.getHeaders(),
+                    Map.of(RESPONSE, printJobResult)
+            );
+
+        };
+    }
+
+    private Path convertByteArrayToFile(byte[] file, String fileName, FileSystem fileSystem) throws IOException {
         //Convert Byte-Array from request to in-mem file
         Path tmpPath = fileSystem.getPath("tmp");
         Files.createDirectory(tmpPath);
-        Path filePath = tmpPath.resolve(printRequest.getFileName());
-        Files.write(filePath, printRequest.getFile());
+        Path filePath = tmpPath.resolve(fileName);
+        Files.write(filePath, file);
         return filePath;
     }
 

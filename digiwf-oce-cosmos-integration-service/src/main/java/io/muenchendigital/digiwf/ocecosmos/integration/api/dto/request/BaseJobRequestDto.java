@@ -3,19 +3,17 @@ package io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DataTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DeliveryTypes;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobRequestDto {
+public abstract class BaseJobRequestDto {
 
     String jobType;
-
-    String templateName;
 
     DeliveryTypes deliveryType;
 
@@ -34,10 +32,6 @@ public class JobRequestDto {
     Boolean mailJob;
 
     Boolean archiveJob;
-
-    String fileName;
-
-    byte[] file;
 
     String userId;
 
