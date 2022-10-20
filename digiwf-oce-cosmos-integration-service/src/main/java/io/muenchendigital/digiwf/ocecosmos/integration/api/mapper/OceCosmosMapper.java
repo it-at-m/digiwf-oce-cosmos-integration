@@ -4,7 +4,6 @@ import io.muenchendigital.digiwf.ocecosmos.integration.api.configuration.Mapstru
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.BaseJobRequestDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.FileJobRequestDto;
 import io.muenchendigital.digiwf.ocecosmos.integration.api.dto.request.TemplateJobRequestDto;
-import io.muenchendigital.digiwf.ocecosmos.integration.model.request.DataTypes;
 import io.muenchendigital.digiwf.ocecosmos.integration.model.request.JobRequest;
 import lombok.Data;
 import org.mapstruct.InheritConfiguration;
@@ -34,8 +33,6 @@ public abstract class OceCosmosMapper {
     private String hostNameDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.userId:}")
     private String userIdDefault;
-    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.dataType:}")
-    private DataTypes dataTypeDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.oauth-client.clientId}")
     private String clientId;
 
@@ -47,7 +44,7 @@ public abstract class OceCosmosMapper {
     @Mapping(target = "archiveJob", source = "archiveJob", defaultExpression = "java(getArchiveJobDefault())", qualifiedByName = "BooleanMapper")
     @Mapping(target = "hostName", source = "hostName", defaultExpression = "java(getHostNameDefault())")
     @Mapping(target = "userId", source = "userId", defaultExpression = "java(getUserIdDefault())")
-    @Mapping(target = "dataType", source = "dataType", defaultExpression = "java(getDataTypeDefault())")
+    @Mapping(target = "dataType", ignore = true)
     @Mapping(target = "clientId", expression = "java(getClientId())")
     @Mapping(target = "file", ignore = true)
     @Mapping(target = "fileName", ignore = true)
@@ -59,9 +56,11 @@ public abstract class OceCosmosMapper {
     @InheritConfiguration(name = "baseDto2Model")
     @Mapping(target = "fileName", source = "fileName")
     @Mapping(target = "templateName", source = "templateName")
+    @Mapping(target = "dataType", source = "dataType", defaultValue = "JSON")
     public abstract JobRequest dto2Model(final TemplateJobRequestDto templateJobRequestDto);
 
     @InheritConfiguration(name = "baseDto2Model")
+    @Mapping(target = "dataType", source = "dataType", defaultValue = "PDF")
     public abstract JobRequest dto2Model(final FileJobRequestDto fileJobRequestDto);
 
     @Named("BooleanMapper")

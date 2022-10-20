@@ -57,7 +57,6 @@ public class OceCosmosMapperTest {
         var archiveJobDefault = false;
         var hostNameDefault = "hostNameDefault";
         var userIdDefault = "userIdDefault";
-        var dataTypeDefault = DataTypes.CSV;
 
         mapper.setApplicationNameDefault(appNameDefault);
         mapper.setJobTypeDefault(jobTypeDefault);
@@ -67,7 +66,6 @@ public class OceCosmosMapperTest {
         mapper.setArchiveJobDefault(archiveJobDefault);
         mapper.setHostNameDefault(hostNameDefault);
         mapper.setUserIdDefault(userIdDefault);
-        mapper.setDataTypeDefault(dataTypeDefault);
 
         var request = mapper.dto2Model(dto);
 
@@ -79,7 +77,6 @@ public class OceCosmosMapperTest {
         assertThat(request.isArchiveJob(), is(archiveJobDefault));
         assertThat(request.getHostName(), is(hostNameDefault));
         assertThat(request.getUserId(), is(userIdDefault));
-        assertThat(request.getDataType(), is(dataTypeDefault));
 
     }
 
