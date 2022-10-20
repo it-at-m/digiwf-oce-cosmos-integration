@@ -11,6 +11,7 @@ import io.muenchendigital.digiwf.ocecosmos.integration.service.JobService;
 import io.muenchendigital.digiwf.spring.cloudstream.utils.api.streaming.service.CorrelateMessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.Message;
@@ -94,14 +95,17 @@ public class OceCosmosStreamingEventListener {
                 return;
             }
 
-            try(InputStream fileStream = new URL(printRequest.getS3Files().get(0).getUrl()).openStream();
+            var s3File = printRequest.getS3Files().get(0);
+
+            try(InputStream fileStream = new URL(s3File.getUrl()).openStream();
                 FileSystem fileSystem = Jimfs.newFileSystem()) {
 
                 // download file from s3
                 final var file = fileStream.readAllBytes();
+                final var fileName = StringUtils.substringAfterLast(s3File.getPath(), "/");
 
                 final JobRequest model = this.oceCosmosMapper.dto2Model(printRequest);
-                model.setFile(convertByteArrayToFile(file, printRequest.getFileName(), fileSystem));
+                model.setFile(convertByteArrayToFile(file, fileName, fileSystem));
 
                 printJobResult = this.jobService.submitJob(model);
             } catch (final IOException ex) {

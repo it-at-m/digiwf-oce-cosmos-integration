@@ -17,6 +17,7 @@ import java.util.Map;
 public class OceCosmosConfiguration {
 
     private static final String HEADER_PRINT_REQUEST = "requestPrint";
+    private static final String HEADER_PDF_PRINT_REQUEST = "requestPDFPrint";
 
     /**
      * Bean of type {@link RoutingCallback} to register the routes
@@ -29,6 +30,7 @@ public class OceCosmosConfiguration {
     public MessageRoutingCallback oceCosmosRouter() {
         final Map<String, String> typeMappings = new HashMap<>();
         typeMappings.put(HEADER_PRINT_REQUEST, HEADER_PRINT_REQUEST);
+        typeMappings.put(HEADER_PDF_PRINT_REQUEST, HEADER_PDF_PRINT_REQUEST);
         return new RoutingCallback(typeMappings);
     }
 

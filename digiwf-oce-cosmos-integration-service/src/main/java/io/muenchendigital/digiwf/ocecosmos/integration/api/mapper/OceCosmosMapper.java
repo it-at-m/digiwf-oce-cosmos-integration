@@ -62,7 +62,6 @@ public abstract class OceCosmosMapper {
     public abstract JobRequest dto2Model(final TemplateJobRequestDto templateJobRequestDto);
 
     @InheritConfiguration(name = "baseDto2Model")
-    @Mapping(target = "fileName", source = "fileName")
     public abstract JobRequest dto2Model(final FileJobRequestDto fileJobRequestDto);
 
     @Named("BooleanMapper")

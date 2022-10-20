@@ -15,7 +15,5 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class FileJobRequestDto extends BaseJobRequestDto {
 
-    String fileName;
-
     List<S3File> s3Files;
 }
