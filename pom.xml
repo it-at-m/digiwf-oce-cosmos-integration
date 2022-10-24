@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.muenchendigital.digiwf</groupId>
     <artifactId>digiwf-oce-cosmos-integration-parent</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <name>digiwf-oce-cosmos-integration-parent</name>
     <packaging>pom</packaging>
     <description>Oce Cosmos integration used by DigiWF</description>
