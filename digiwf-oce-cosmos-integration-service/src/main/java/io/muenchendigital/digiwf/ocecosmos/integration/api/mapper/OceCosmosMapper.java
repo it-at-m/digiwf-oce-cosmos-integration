@@ -63,7 +63,7 @@ public abstract class OceCosmosMapper {
 
     @InheritConfiguration(name = "baseDto2Model")
     @Mapping(target = "dataType", source = "dataType", defaultValue = "PDF")
-    @Mapping(target = "templateName", defaultExpression = "java(getTemplateNameDefault())" )
+    @Mapping(target = "templateName", expression = "java(getTemplateNameDefault())" )
     public abstract JobRequest dto2Model(final FileJobRequestDto fileJobRequestDto);
 
     @Named("BooleanMapper")
