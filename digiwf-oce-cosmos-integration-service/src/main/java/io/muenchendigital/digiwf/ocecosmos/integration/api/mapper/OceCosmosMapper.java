@@ -19,6 +19,8 @@ public abstract class OceCosmosMapper {
 
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.applicationName:}")
     private String applicationNameDefault;
+    @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.templateName:}")
+    private String templateNameDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.jobType:}")
     private String jobTypeDefault;
     @Value("${io.muenchendigital.digiwf.ocecosmos.defaults.debtor:}")
@@ -61,6 +63,7 @@ public abstract class OceCosmosMapper {
 
     @InheritConfiguration(name = "baseDto2Model")
     @Mapping(target = "dataType", source = "dataType", defaultValue = "PDF")
+    @Mapping(target = "templateName", defaultExpression = "java(getTemplateNameDefault())" )
     public abstract JobRequest dto2Model(final FileJobRequestDto fileJobRequestDto);
 
     @Named("BooleanMapper")

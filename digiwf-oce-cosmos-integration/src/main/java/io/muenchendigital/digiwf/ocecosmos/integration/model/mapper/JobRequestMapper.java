@@ -40,9 +40,8 @@ public abstract class JobRequestMapper {
     public List<JobAttribute> mapToJobAttributes(JobRequest jobRequest, Long jobId) {
         List<JobAttribute> result = new ArrayList<>();
 
-        if(jobRequest.getTemplateName() != null) {
-            result.add(new JobAttribute().jobId(jobId).attributeName("FORM_NAME").attributeValue(jobRequest.getTemplateName()));
-        }
+
+        result.add(new JobAttribute().jobId(jobId).attributeName("FORM_NAME").attributeValue(jobRequest.getTemplateName()));
         result.add(new JobAttribute().jobId(jobId).attributeName("DEBITOR").attributeValue(jobRequest.getDebtor()));
         result.add(new JobAttribute().jobId(jobId).attributeName("USER").attributeValue(jobRequest.getApplicationName()));
         result.add(new JobAttribute().jobId(jobId).attributeName("ERST_DATUM").attributeValue(LocalDateTime.now().format(dateTimeFormatter)));
