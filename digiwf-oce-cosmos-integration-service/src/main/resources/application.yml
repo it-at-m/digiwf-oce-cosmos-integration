@@ -30,3 +30,36 @@ spring:
     location: banner.txt
   lifecycle:
     timeout-per-shutdown-phase: 1m
+
+  cloud:
+    function:
+      definition: functionRouter;sendMessage;sendCorrelateMessage;
+    stream:
+      function:
+        routing:
+          enabled: true
+      kafka:
+        binder:
+          configuration:
+            security:
+              protocol: SSL
+          consumerProperties:
+            auto:
+              offset:
+                reset: latest
+            key:
+              deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+            value:
+              deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+          producerProperties:
+            key:
+              serializer: org.springframework.kafka.support.serializer.JsonSerializer
+            value:
+              serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  kafka:
+    consumer:
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
