@@ -114,6 +114,7 @@ public class OceCosmosStreamingEventListener {
 
                 final JobRequest model = this.oceCosmosMapper.dto2Model(printRequest);
                 model.setFile(convertByteArrayToFile(file, fileName, fileSystem));
+                model.setFileName(fileName);
 
                 printJobResult = this.jobService.submitJob(model);
             } catch (final IOException ex) {
