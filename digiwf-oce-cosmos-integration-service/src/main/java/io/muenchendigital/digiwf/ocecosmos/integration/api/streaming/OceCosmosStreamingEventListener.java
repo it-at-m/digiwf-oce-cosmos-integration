@@ -87,6 +87,14 @@ public class OceCosmosStreamingEventListener {
 
             Object printJobResult;
 
+            if(printRequest.getS3Files() == null) {
+                this.correlateMessageService.sendCorrelateMessage(
+                        message.getHeaders(),
+                        Map.of(RESPONSE, new OceCosmosErrorDto("Presigned S3 File-URLs needed"))
+                );
+                return;
+            }
+
             if(printRequest.getS3Files().size() != 1) {
                 this.correlateMessageService.sendCorrelateMessage(
                         message.getHeaders(),
